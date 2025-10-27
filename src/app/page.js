@@ -11,7 +11,7 @@ export default function Home() {
     { name: "Dr. Asmita Dani", role: "Technical Mentor, RF Domain", image: "/images/Dr.Asmita.png" },
     { name: "Baivab Anand", role: "Head of AI & Technical Advisor", image: "/images/Baivab.png" },
     { name: "Vikrant Sharma", role: "Mechanical Engineer", image: "/images/Vikrant.png" },
-    { name: "Aaryan Tyagi", role: "Mechanical Engineer", image: "/images/Aayan.png" },
+    { name: "Aaryan Tyagi", role: "Mechanical Engineer", image: "/images/Aaryan.png" },
     { name: "Aishita", role: "Electrical & RF Engineer", image: "/images/Aishita.png" },
     { name: "Edison Kho", role: "Electrical & RF Engineer", image: "/images/Edison.png" },
     { name: "Rohit Jhajhria", role: "Electrical & RF Engineer", image: "/images/Rohit.png" },
