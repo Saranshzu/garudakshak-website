@@ -294,7 +294,7 @@ export default function Home() {
           
           <div className="grid md:grid-cols-2 gap-8 max-w-2xl">
             <a
-              href="mailto:garudakshak@gmail.com"
+              href="mailto:Saransh@garudakshak.com"
               className="bg-white text-black px-10 py-4 font-medium tracking-wide hover:bg-gray-200 transition-colors text-sm text-center"
             >
               EMAIL INQUIRY
