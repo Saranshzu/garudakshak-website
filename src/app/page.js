@@ -8,7 +8,6 @@ export default function Home() {
   const teamMembers = [
     { name: "Saransh Duharia", role: "Founder & CEO", image: "/images/Saransh.jpg" },
     { name: "Dr. Anirban Sarkar", role: "Technical Mentor, RF Domain", image: "/images/Dr.Anirban.png" },
-    { name: "Dr. Asmita Dani", role: "Technical Mentor, RF Domain", image: "/images/Dr.Asmita.png" },
     { name: "Baivab Anand", role: "Head of AI & Technical Advisor", image: "/images/Baivab.png" },
     { name: "Vikrant Sharma", role: "Mechanical Engineer", image: "/images/Vikrant.png" },
     { name: "Aaryan Tyagi", role: "Mechanical Engineer", image: "/images/Aaryan.png" },
