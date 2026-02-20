@@ -10,11 +10,11 @@ export default function Home() {
     { name: "Dr. Anirban Sarkar", role: "Technical Mentor, RF Domain", image: "/images/Dr.Anirban.png" },
     { name: "Baivab Anand", role: "Head of AI & Technical Advisor", image: "/images/Baivab.png" },
     { name: "Vikrant Sharma", role: "Mechanical Engineer", image: "/images/Vikrant.png" },
-    { name: "Aditya Tayal", role: "Software Developer", image: "/images/Aditya.png" },
+    { name: "Aditya Tayal", role: "Software Developer", image: "/images/Aditya.jpeg" },
     { name: "Aishita", role: "Electrical & RF Engineer", image: "/images/Aishita.png" },
     { name: "Edison Kho", role: "Electrical & RF Engineer", image: "/images/Edison.png" },
-    { name: "Gauri Bhasker", role: "UI/UX Designer", image: "/images/Gauri.png" },
-    { name: "Rohit Jhajhria", role: "Electrical & RF Engineer", image: "/images/Rohit.png" },
+    { name: "Gauri Bhasker", role: "UI/UX Designer", image: "/images/Gauri.jpeg" },
+    { name: "Rohit Jhajhria", role: "Electrical & RF Engineer", image: "/images/Rohit.jpeg" },
     { name: "Satvik", role: "Software Engineer", image: "/images/Satvik.png" }
   ];
 
