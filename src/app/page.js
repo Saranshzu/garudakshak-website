@@ -283,7 +283,7 @@ export default function Home() {
                   '*'
                 );
               }
-            }, 2200);
+            }, 500);
           }}
         />
 
