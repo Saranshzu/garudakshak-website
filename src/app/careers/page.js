@@ -213,17 +213,17 @@ export default function CareersPage() {
         html{scroll-behavior:smooth;}
         body{background:${B};color:${W};font-family:'Barlow',sans-serif;overflow-x:hidden;}
         .hd{font-family:'Barlow Condensed',sans-serif;}
-        .lbl{font-family:'Rajdhani',sans-serif;font-weight:600;letter-spacing:.2em;font-size:11px;}
+        .lbl{font-family:'Rajdhani',sans-serif;font-weight:500;letter-spacing:.28em;font-size:11px;}
         ::-webkit-scrollbar{width:3px;}
         ::-webkit-scrollbar-thumb{background:${A};}
-        .nl{color:${DIM};text-decoration:none;font-family:'Rajdhani',sans-serif;font-weight:600;font-size:12px;letter-spacing:.2em;transition:color .2s;padding-bottom:2px;border-bottom:1px solid transparent;}
+        .nl{color:${DIM};text-decoration:none;font-family:'Rajdhani',sans-serif;font-weight:500;font-size:12px;letter-spacing:.28em;transition:color .2s;padding-bottom:2px;border-bottom:1px solid transparent;}
         .nl:hover{color:${A};border-bottom-color:${A};}
-        .stag{display:inline-flex;align-items:center;gap:8px;padding:5px 14px;border:1px solid ${BRA};font-family:'Rajdhani',sans-serif;font-size:11px;letter-spacing:.22em;color:${A};font-weight:600;background:rgba(255,136,0,0.05);}
+        .stag{display:inline-flex;align-items:center;gap:8px;padding:5px 14px;border:1px solid ${BRA};font-family:'Rajdhani',sans-serif;font-size:11px;letter-spacing:.28em;color:${A};font-weight:500;background:rgba(255,136,0,0.05);}
         .stag::before{content:'';width:6px;height:6px;background:${A};border-radius:50%;box-shadow:0 0 8px ${A};}
-        .ba{background:${A};color:#000;padding:12px 28px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;letter-spacing:.18em;border:none;cursor:pointer;text-decoration:none;display:inline-block;transition:all .2s;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,0 100%);}
+        .ba{background:${A};color:#001a33;padding:12px 28px;font-family:'Rajdhani',sans-serif;font-weight:600;font-size:13px;letter-spacing:.26em;border:none;cursor:pointer;text-decoration:none;display:inline-block;transition:all .2s;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,0 100%);}
         .ba:hover{background:#FFAA33;transform:translateY(-1px);}
         .ba:disabled{background:#444;color:#888;cursor:not-allowed;transform:none;}
-        .bo{border:1px solid ${BRA};color:${W};padding:12px 28px;font-family:'Rajdhani',sans-serif;font-weight:600;font-size:13px;letter-spacing:.18em;background:transparent;cursor:pointer;text-decoration:none;display:inline-block;transition:all .2s;}
+        .bo{border:1px solid ${BRA};color:${W};padding:12px 28px;font-family:'Rajdhani',sans-serif;font-weight:500;font-size:13px;letter-spacing:.26em;background:transparent;cursor:pointer;text-decoration:none;display:inline-block;transition:all .2s;}
         .bo:hover{border-color:${A};color:${A};}
         .gorb{position:absolute;border-radius:50%;filter:blur(100px);pointer-events:none;}
         .desk{display:flex!important;} .mob-tog{display:none!important;}
@@ -262,7 +262,7 @@ export default function CareersPage() {
           <div className="fu fu1">
             <div className="stag" style={{marginBottom:20}}>WE'RE HIRING · {totalRoles} OPEN ROLES</div>
           </div>
-          <h1 className="hd fu fu2" style={{fontSize:'clamp(56px,9vw,112px)',fontWeight:900,lineHeight:.88,letterSpacing:'-.02em',marginBottom:28}}>
+          <h1 className="hd fu fu2" style={{fontSize:'clamp(56px,9vw,112px)',fontWeight:700,lineHeight:.88,letterSpacing:'.06em',marginBottom:28}}>
             BUILD THE<br/><span style={{color:A}}>FUTURE OF</span><br/>DEFENCE.
           </h1>
           <p className="fu fu3" style={{fontSize:18,color:'rgba(255,255,255,0.55)',maxWidth:540,lineHeight:1.8,fontWeight:300,marginBottom:48}}>
@@ -278,7 +278,7 @@ export default function CareersPage() {
               {v:'₹ Funded',       l:'NIDHI-PRAYAS · EMERGENT'},
             ].map((s,i)=>(
               <div key={i} style={{paddingRight:40,marginRight:40,borderRight:i<3?`1px solid ${BR}`:'none',paddingTop:4}}>
-                <div className="hd" style={{fontSize:28,fontWeight:900,color:W,lineHeight:1}}>{s.v}</div>
+                <div className="hd" style={{fontSize:28,fontWeight:700,color:W,lineHeight:1,letterSpacing:'.05em'}}>{s.v}</div>
                 <div className="lbl" style={{fontSize:9,color:A,marginTop:5}}>{s.l}</div>
               </div>
             ))}
@@ -322,7 +322,7 @@ export default function CareersPage() {
                     {/* top row */}
                     <div style={{display:'flex',justifyContent:'space-between',alignItems:'flex-start',gap:12,marginBottom:12,flexWrap:'wrap'}}>
                       <div>
-                        <div className="hd" style={{fontSize:22,fontWeight:800,letterSpacing:'.04em',color:W,marginBottom:4}}>{role.title}</div>
+                        <div className="hd" style={{fontSize:22,fontWeight:600,letterSpacing:'.08em',color:W,marginBottom:4}}>{role.title}</div>
                         <div style={{display:'flex',gap:6,flexWrap:'wrap'}}>
                           <span style={typeBadge(role.type)}>{role.type.toUpperCase()}</span>
                           <span style={{...typeBadge('ft'),border:`1px solid rgba(255,255,255,0.1)`,color:DIM,background:'transparent'}}>{role.level.toUpperCase()}</span>
@@ -363,7 +363,7 @@ export default function CareersPage() {
       <div style={{borderTop:`1px solid ${BR}`,background:B2,padding:'56px 28px'}}>
         <div style={{maxWidth:1300,margin:'0 auto',display:'flex',justifyContent:'space-between',alignItems:'center',flexWrap:'wrap',gap:32}}>
           <div>
-            <div className="hd" style={{fontSize:'clamp(24px,3vw,40px)',fontWeight:900,lineHeight:1,marginBottom:8}}>
+            <div className="hd" style={{fontSize:'clamp(24px,3vw,40px)',fontWeight:700,lineHeight:1,letterSpacing:'.05em',marginBottom:8}}>
               Don't see your role?
             </div>
             <p style={{color:'rgba(255,255,255,0.45)',fontSize:15,fontWeight:300,lineHeight:1.7,maxWidth:440,margin:0}}>
@@ -380,7 +380,7 @@ export default function CareersPage() {
       <div style={{borderTop:`1px solid ${BR}`,padding:'20px 28px',background:B,display:'flex',justifyContent:'space-between',alignItems:'center',flexWrap:'wrap',gap:12}}>
         <a href="/" style={{display:'flex',alignItems:'center',gap:10,textDecoration:'none'}}>
           <img src="/images/garudakshak.png" alt="" style={{width:20,height:20,objectFit:'contain'}} onError={e=>e.target.style.display='none'}/>
-          <span className="hd" style={{fontWeight:800,fontSize:13,letterSpacing:'.08em',color:W}}>GARUDAKSHAK</span>
+          <span className="hd" style={{fontWeight:600,fontSize:13,letterSpacing:'.14em',color:W}}>GARUDAKSHAK</span>
         </a>
         <span className="lbl" style={{color:DIM,fontSize:9}}>© {new Date().getFullYear()} GARUDAKSHAK DEFENCE TECHNOLOGIES · ALL RIGHTS RESERVED</span>
         <span className="lbl" style={{fontSize:9,color:A}}>SECURING SKIES, DEFENDING HORIZONS</span>
@@ -397,7 +397,7 @@ export default function CareersPage() {
             <div style={{padding:'28px 32px 20px',borderBottom:`1px solid ${BR}`,flexShrink:0,position:'relative'}}>
               <div style={{position:'absolute',top:0,left:'20%',right:'20%',height:2,background:`linear-gradient(90deg,transparent,${A},transparent)`}}/>
               <div className="lbl" style={{fontSize:9,color:A,marginBottom:8}}>{activeModal.domain}</div>
-              <div className="hd" style={{fontSize:26,fontWeight:800,color:W,lineHeight:1.1,marginBottom:4}}>{activeModal.title}</div>
+              <div className="hd" style={{fontSize:26,fontWeight:600,color:W,lineHeight:1.1,letterSpacing:'.06em',marginBottom:4}}>{activeModal.title}</div>
               {activeModal.type && <div style={{display:'flex',gap:6,marginTop:8}}>
                 <span style={typeBadge(activeModal.type)}>{activeModal.type.toUpperCase()}</span>
                 {activeModal.level && <span style={{...typeBadge('ft'),border:`1px solid rgba(255,255,255,0.1)`,color:DIM,background:'transparent'}}>{activeModal.level.toUpperCase()}</span>}
@@ -420,7 +420,7 @@ export default function CareersPage() {
                   <div style={{width:64,height:64,border:`2px solid ${A}`,borderRadius:'50%',display:'flex',alignItems:'center',justifyContent:'center',margin:'0 auto 20px'}}>
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={A} strokeWidth="2.5"><path d="M5 13l4 4L19 7"/></svg>
                   </div>
-                  <div className="hd" style={{fontSize:28,fontWeight:800,color:W,marginBottom:12}}>APPLICATION RECEIVED</div>
+                  <div className="hd" style={{fontSize:28,fontWeight:600,color:W,letterSpacing:'.06em',marginBottom:12}}>APPLICATION RECEIVED</div>
                   <p style={{fontSize:15,color:'rgba(255,255,255,0.5)',fontWeight:300,lineHeight:1.7,marginBottom:28}}>
                     Thanks for applying for <strong style={{color:W}}>{activeModal.title}</strong>. We review every application personally and will be in touch if there's a strong fit.
                   </p>

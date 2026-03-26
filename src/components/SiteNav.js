@@ -80,7 +80,7 @@ export default function SiteNav({ isHome = false, scrollThreshold = 20 }) {
             onError={(e) => (e.target.style.display = "none")}
           />
           <div>
-            <div className="hd" style={{ fontWeight: 900, fontSize: 18, letterSpacing: ".1em", color: W }}>
+            <div className="hd" style={{ fontWeight: 700, fontSize: 18, letterSpacing: ".16em", color: W }}>
               GARUDAKSHAK
             </div>
             <div className="lbl" style={{ fontSize: 8, color: A, marginTop: 1 }}>

@@ -77,9 +77,9 @@ export default function Home() {
   }, []);
 
   /* ── TOKENS ────────────────────────────────────────── */
-  const A   = "#FF8800";   // bright amber
-  const AG  = "#CC6600";   // amber dim
-  const B   = "#050508";   // near-black base
+  const A   = "#FF8800";
+  const AG  = "#CC6600";
+  const B   = "#050508";
   const B2  = "#0A0C12";
   const B3  = "#0F1520";
   const W   = "#FFFFFF";
@@ -103,7 +103,7 @@ export default function Home() {
 
         /* ── typography helpers ── */
         .hd  { font-family:'Barlow Condensed',sans-serif; }
-        .lbl { font-family:'Rajdhani',sans-serif; font-weight:600; letter-spacing:.2em; font-size:11px; }
+        .lbl { font-family:'Rajdhani',sans-serif; font-weight:500; letter-spacing:.28em; font-size:11px; }
 
         /* ── scanline noise overlay ── */
         .noise::after {
@@ -123,22 +123,22 @@ export default function Home() {
         }
 
         /* ── nav ── */
-        .nl { color:${DIM}; text-decoration:none; font-family:'Rajdhani',sans-serif; font-weight:600; font-size:12px; letter-spacing:.2em; transition:color .2s; position:relative; padding-bottom:3px; }
+        .nl { color:${DIM}; text-decoration:none; font-family:'Rajdhani',sans-serif; font-weight:500; font-size:12px; letter-spacing:.28em; transition:color .2s; position:relative; padding-bottom:3px; }
         .nl::after { content:''; position:absolute; bottom:0; left:0; width:0; height:1px; background:${A}; transition:width .25s; }
         .nl:hover { color:${A}; }
         .nl:hover::after { width:100%; }
 
         /* ── section tag ── */
-        .stag { display:inline-flex; align-items:center; gap:8px; padding:5px 14px; border:1px solid ${BRA}; font-family:'Rajdhani',sans-serif; font-size:11px; letter-spacing:.22em; color:${A}; font-weight:600; margin-bottom:20px; background:rgba(255,136,0,0.05); }
+        .stag { display:inline-flex; align-items:center; gap:8px; padding:5px 14px; border:1px solid ${BRA}; font-family:'Rajdhani',sans-serif; font-size:11px; letter-spacing:.28em; color:${A}; font-weight:500; margin-bottom:20px; background:rgba(255,136,0,0.05); }
         .stag::before { content:''; width:6px; height:6px; background:${A}; border-radius:50%; box-shadow:0 0 8px ${A}; }
 
         /* ── amber rule ── */
         .arule { width:48px; height:3px; background:linear-gradient(90deg,${A},transparent); margin:22px 0 32px; }
 
         /* ── buttons ── */
-        .ba { background:${A}; color:#000; padding:14px 36px; font-family:'Rajdhani',sans-serif; font-weight:700; font-size:13px; letter-spacing:.2em; border:none; cursor:pointer; text-decoration:none; display:inline-block; transition:all .2s; clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,0 100%); }
+        .ba { background:${A}; color:#001a33; padding:14px 36px; font-family:'Rajdhani',sans-serif; font-weight:600; font-size:13px; letter-spacing:.28em; border:none; cursor:pointer; text-decoration:none; display:inline-block; transition:all .2s; clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,0 100%); }
         .ba:hover { background:#FFAA33; transform:translateY(-1px); box-shadow:0 8px 32px rgba(255,136,0,0.4); }
-        .bo { border:1px solid ${BRA}; color:${W}; padding:14px 36px; font-family:'Rajdhani',sans-serif; font-weight:600; font-size:13px; letter-spacing:.2em; background:transparent; cursor:pointer; text-decoration:none; display:inline-block; transition:all .2s; clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,0 100%); }
+        .bo { border:1px solid ${BRA}; color:${W}; padding:14px 36px; font-family:'Rajdhani',sans-serif; font-weight:500; font-size:13px; letter-spacing:.28em; background:transparent; cursor:pointer; text-decoration:none; display:inline-block; transition:all .2s; clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,0 100%); }
         .bo:hover { border-color:${A}; color:${A}; background:rgba(255,136,0,0.06); }
 
         /* ── card ── */
@@ -221,7 +221,7 @@ export default function Home() {
 
         <div style={{
           position:'absolute',inset:0,zIndex:1,
-          background:'radial-gradient(circle at 78% 22%, rgba(255,136,0,0.24), transparent 22%), linear-gradient(135deg, #050508 0%, #0A0C12 45%, #111927 100%)',
+            background:'radial-gradient(circle at 78% 22%, rgba(255,136,0,0.24), transparent 22%), linear-gradient(135deg, #050508 0%, #0A0C12 45%, #111927 100%)',
         }}/>
 
         {/* dark gradient layers */}
@@ -243,7 +243,7 @@ export default function Home() {
           {/* pulse keyframe */}
           <style>{`@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}`}</style>
 
-          <h1 className="hd fu fu1" style={{fontSize:'clamp(52px,7.5vw,100px)',fontWeight:900,lineHeight:.92,letterSpacing:'-.02em',marginBottom:24,textShadow:'0 4px 40px rgba(0,0,0,0.8)'}}>
+          <h1 className="hd fu fu1" style={{fontSize:'clamp(52px,7.5vw,100px)',fontWeight:700,lineHeight:.92,letterSpacing:'.06em',marginBottom:24,textShadow:'0 4px 40px rgba(0,0,0,0.8)'}}>
             SECURE<br/>
             <span style={{color:A,textShadow:`0 0 60px rgba(255,136,0,0.5)`}}>EVERY</span><br/>
             AIRSPACE.
@@ -267,7 +267,7 @@ export default function Home() {
               {v:'3-in-1',l:'DETECT · ID · NEUTRALIZE'},
             ].map((s,i)=>(
               <div key={i} style={{padding:'18px 40px 0 0',marginRight:40,borderRight:i<3?`1px solid rgba(255,255,255,0.08)`:'none',marginTop:18}}>
-                <div className="hd" style={{fontSize:32,fontWeight:900,color:W,lineHeight:1}}>{s.v}</div>
+                <div className="hd" style={{fontSize:32,fontWeight:700,color:W,lineHeight:1,letterSpacing:'.05em'}}>{s.v}</div>
                 <div className="lbl" style={{fontSize:9,color:A,marginTop:5}}>{s.l}</div>
               </div>
             ))}
@@ -307,7 +307,7 @@ export default function Home() {
         <div style={{maxWidth:1300,margin:'0 auto',display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(320px,1fr))',gap:80,alignItems:'start'}}>
           <div>
             <div className="stag">MISSION</div>
-            <h2 className="hd" style={{fontSize:'clamp(40px,6vw,72px)',fontWeight:900,lineHeight:.92,marginBottom:0}}>
+            <h2 className="hd" style={{fontSize:'clamp(40px,6vw,72px)',fontWeight:700,lineHeight:.92,letterSpacing:'.05em',marginBottom:0}}>
               MEET<br/><span style={{color:A}}>GARUDA-<br/>SHIELD.</span>
             </h2>
             <div className="arule"/>
@@ -347,7 +347,7 @@ export default function Home() {
         <div style={{maxWidth:1300,margin:'0 auto',position:'relative',zIndex:1}}>
           <div style={{textAlign:'center',marginBottom:72}}>
             <div className="stag" style={{justifyContent:'center'}}>HOW IT WORKS</div>
-            <h2 className="hd" style={{fontSize:'clamp(40px,6vw,72px)',fontWeight:900,lineHeight:.92}}>
+            <h2 className="hd" style={{fontSize:'clamp(40px,6vw,72px)',fontWeight:700,lineHeight:.92,letterSpacing:'.05em'}}>
               3-STAGE <span style={{color:A}}>DEFENSE PIPELINE</span>
             </h2>
           </div>
@@ -365,8 +365,8 @@ export default function Home() {
                specs:['Jamming: 500m+ range','Capture: 30cm precision','Zero ammunition cost']},
             ].map(s=>(
               <div key={s.n} className="card clip" style={{padding:'40px 32px'}}>
-                <div className="hd" style={{fontSize:96,fontWeight:900,lineHeight:1,color:'rgba(255,136,0,0.08)',marginBottom:-20}}>{s.n}</div>
-                <div className="hd" style={{fontSize:40,fontWeight:900,color:s.col,letterSpacing:'.04em',marginBottom:6,textShadow:`0 0 30px rgba(255,136,0,0.3)`}}>{s.t}</div>
+                <div className="hd" style={{fontSize:96,fontWeight:700,lineHeight:1,color:'rgba(255,136,0,0.08)',letterSpacing:'.06em',marginBottom:-20}}>{s.n}</div>
+                <div className="hd" style={{fontSize:40,fontWeight:700,color:s.col,letterSpacing:'.09em',marginBottom:6,textShadow:`0 0 30px rgba(255,136,0,0.3)`}}>{s.t}</div>
                 <div className="arule" style={{width:32,margin:'16px 0 24px'}}/>
                 <p style={{color:'rgba(255,255,255,0.55)',fontSize:15,lineHeight:1.75,fontWeight:300,marginBottom:28}}>{s.b}</p>
                 <div style={{display:'flex',flexDirection:'column',gap:9}}>
@@ -430,7 +430,7 @@ export default function Home() {
           }}>
             <div style={{display:'flex',alignItems:'center',gap:12}}>
               <div className="stag" style={{margin:0}}>HARDWARE · CAD RENDERS</div>
-              <span className="hd" style={{fontSize:'clamp(18px,2.5vw,28px)',fontWeight:900,color:W}}>
+              <span className="hd" style={{fontSize:'clamp(18px,2.5vw,28px)',fontWeight:700,color:W,letterSpacing:'.05em'}}>
                 OUR <span style={{color:A}}>PROTOTYPE</span>
               </span>
             </div>
@@ -699,7 +699,7 @@ export default function Home() {
         <div style={{maxWidth:1300,margin:'0 auto',display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(320px,1fr))',gap:80}}>
           <div>
             <div className="stag">PERFORMANCE</div>
-            <h2 className="hd" style={{fontSize:'clamp(40px,6vw,72px)',fontWeight:900,lineHeight:.92}}>
+            <h2 className="hd" style={{fontSize:'clamp(40px,6vw,72px)',fontWeight:700,lineHeight:.92,letterSpacing:'.05em'}}>
               KEY<br/><span style={{color:A}}>METRICS</span>
             </h2>
             <div className="arule"/>
@@ -718,7 +718,7 @@ export default function Home() {
               <div key={m.s} className="mr">
                 <div>
                   <div className="lbl" style={{fontSize:10,color:DIM,marginBottom:6}}>{m.s}</div>
-                  <div className="hd" style={{fontSize:36,fontWeight:900,lineHeight:1,color:W}}>{m.v}</div>
+                  <div className="hd" style={{fontSize:36,fontWeight:700,lineHeight:1,color:W,letterSpacing:'.05em'}}>{m.v}</div>
                 </div>
                 <div style={{textAlign:'right'}}>
                   <div className="lbl" style={{fontSize:11,color:A}}>{m.r}</div>
@@ -735,7 +735,7 @@ export default function Home() {
       <section id="recognition" style={{padding:'110px 28px',background:B,borderTop:`1px solid ${BR}`}}>
         <div style={{maxWidth:1300,margin:'0 auto'}}>
           <div className="stag">RECOGNITION</div>
-          <h2 className="hd" style={{fontSize:'clamp(40px,6vw,72px)',fontWeight:900,lineHeight:.92,marginBottom:56}}>
+          <h2 className="hd" style={{fontSize:'clamp(40px,6vw,72px)',fontWeight:700,lineHeight:.92,letterSpacing:'.05em',marginBottom:56}}>
             AWARDS &<br/><span style={{color:A}}>SUPPORT</span>
           </h2>
 
@@ -751,7 +751,7 @@ export default function Home() {
                   <img src={aw.photo} alt={aw.title}/>
                   <div className="awc-overlay">
                     <div className="lbl" style={{fontSize:9,color:A,marginBottom:8}}>{aw.tag}</div>
-                    <div className="hd" style={{fontSize:22,fontWeight:800,marginBottom:8,lineHeight:1.1}}>{aw.title}</div>
+                    <div className="hd" style={{fontSize:22,fontWeight:600,letterSpacing:'.06em',marginBottom:8,lineHeight:1.1}}>{aw.title}</div>
                     <p style={{fontSize:13,color:'rgba(255,255,255,0.65)',fontWeight:300,lineHeight:1.6,margin:0}}>{aw.body}</p>
                   </div>
                   <div style={{position:'absolute',top:0,right:0,width:22,height:22,borderTop:`2px solid ${A}`,borderRight:`2px solid ${A}`,zIndex:3,pointerEvents:'none'}}/>
@@ -774,7 +774,7 @@ export default function Home() {
                   </div>
                   <div style={{textAlign:'center'}}>
                     <div className="lbl" style={{fontSize:9,color:A,marginBottom:10}}>{aw.tag}</div>
-                    <div className="hd" style={{fontSize:20,fontWeight:800,marginBottom:10,lineHeight:1.1}}>{aw.title}</div>
+                    <div className="hd" style={{fontSize:20,fontWeight:600,letterSpacing:'.06em',marginBottom:10,lineHeight:1.1}}>{aw.title}</div>
                     <p style={{fontSize:13,color:'rgba(255,255,255,0.5)',fontWeight:300,lineHeight:1.65,margin:0}}>{aw.body}</p>
                   </div>
                   <div style={{position:'absolute',top:0,right:0,width:20,height:20,borderTop:`2px solid ${A}`,borderRight:`2px solid ${A}`,pointerEvents:'none'}}/>
@@ -791,7 +791,7 @@ export default function Home() {
         <div style={{maxWidth:1300,margin:'0 auto',display:'flex',alignItems:'center',justifyContent:'space-between',flexWrap:'wrap',gap:40}}>
           <div>
             <div className="stag">THE TEAM</div>
-            <h2 className="hd" style={{fontSize:'clamp(32px,4vw,52px)',fontWeight:900,lineHeight:.95,margin:0}}>
+            <h2 className="hd" style={{fontSize:'clamp(32px,4vw,52px)',fontWeight:700,lineHeight:.95,letterSpacing:'.05em',margin:0}}>
               10 engineers.<br/><span style={{color:A}}>One mission.</span>
             </h2>
           </div>
@@ -810,7 +810,7 @@ export default function Home() {
         <div style={{maxWidth:1300,margin:'0 auto',position:'relative',zIndex:1}}>
           <div style={{maxWidth:760}}>
               <div className="stag">GET IN TOUCH</div>
-              <h2 className="hd" style={{fontSize:'clamp(44px,7vw,84px)',fontWeight:900,lineHeight:.88,marginBottom:28}}>
+              <h2 className="hd" style={{fontSize:'clamp(44px,7vw,84px)',fontWeight:700,lineHeight:.88,letterSpacing:'.05em',marginBottom:28}}>
                 LET'S SECURE<br/><span style={{color:A,textShadow:`0 0 60px rgba(255,136,0,0.4)`}}>YOUR SKIES.</span>
               </h2>
               <p style={{color:'rgba(255,255,255,0.5)',fontSize:16,lineHeight:1.8,fontWeight:300,marginBottom:44}}>
@@ -831,7 +831,7 @@ export default function Home() {
         <div style={{maxWidth:1300,margin:'0 auto',display:'flex',justifyContent:'space-between',alignItems:'center',flexWrap:'wrap',gap:12}}>
           <div style={{display:'flex',alignItems:'center',gap:10}}>
             <img src="/images/garudakshak.png" alt="" style={{width:22,height:22,objectFit:'contain'}} onError={e=>e.target.style.display='none'}/>
-            <span className="hd" style={{fontWeight:800,fontSize:14,letterSpacing:'.08em'}}>GARUDAKSHAK</span>
+            <span className="hd" style={{fontWeight:600,fontSize:14,letterSpacing:'.14em'}}>GARUDAKSHAK</span>
           </div>
           <span className="lbl" style={{color:DIM,fontSize:9}}>
             © {new Date().getFullYear()} GARUDAKSHAK DEFENCE TECHNOLOGIES · ALL RIGHTS RESERVED

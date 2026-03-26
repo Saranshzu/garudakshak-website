@@ -108,14 +108,14 @@ export default function TeamPage() {
         html{scroll-behavior:smooth;}
         body{background:${B};color:${W};font-family:'Barlow',sans-serif;overflow-x:hidden;}
         .hd{font-family:'Barlow Condensed',sans-serif;}
-        .lbl{font-family:'Rajdhani',sans-serif;font-weight:600;letter-spacing:.2em;font-size:11px;}
+        .lbl{font-family:'Rajdhani',sans-serif;font-weight:500;letter-spacing:.28em;font-size:11px;}
         ::-webkit-scrollbar{width:3px;}
         ::-webkit-scrollbar-thumb{background:${A};}
-        .nl{color:${DIM};text-decoration:none;font-family:'Rajdhani',sans-serif;font-weight:600;font-size:12px;letter-spacing:.2em;transition:color .2s;padding-bottom:2px;border-bottom:1px solid transparent;}
+        .nl{color:${DIM};text-decoration:none;font-family:'Rajdhani',sans-serif;font-weight:500;font-size:12px;letter-spacing:.28em;transition:color .2s;padding-bottom:2px;border-bottom:1px solid transparent;}
         .nl:hover{color:${A};border-bottom-color:${A};}
-        .stag{display:inline-flex;align-items:center;gap:8px;padding:5px 14px;border:1px solid ${BRA};font-family:'Rajdhani',sans-serif;font-size:11px;letter-spacing:.22em;color:${A};font-weight:600;margin-bottom:16px;background:rgba(255,136,0,0.05);}
+        .stag{display:inline-flex;align-items:center;gap:8px;padding:5px 14px;border:1px solid ${BRA};font-family:'Rajdhani',sans-serif;font-size:11px;letter-spacing:.28em;color:${A};font-weight:500;margin-bottom:16px;background:rgba(255,136,0,0.05);}
         .stag::before{content:'';width:6px;height:6px;background:${A};border-radius:50%;box-shadow:0 0 8px ${A};}
-        .ba{background:${A};color:#000;padding:13px 32px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;letter-spacing:.2em;border:none;cursor:pointer;text-decoration:none;display:inline-block;transition:all .2s;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,0 100%);}
+        .ba{background:${A};color:#001a33;padding:13px 32px;font-family:'Rajdhani',sans-serif;font-weight:600;font-size:13px;letter-spacing:.28em;border:none;cursor:pointer;text-decoration:none;display:inline-block;transition:all .2s;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,0 100%);}
         .ba:hover{background:#FFAA33;transform:translateY(-1px);}
         .gorb{position:absolute;border-radius:50%;filter:blur(100px);pointer-events:none;}
         .desk{display:flex!important;} .mob-tog{display:none!important;}
@@ -132,7 +132,7 @@ export default function TeamPage() {
         <div className="gorb" style={{width:600,height:600,background:'rgba(255,136,0,0.09)',top:-100,right:-100}}/>
         <div style={{maxWidth:1300,margin:'0 auto',position:'relative',zIndex:1}}>
           <div className="stag fu">THE PEOPLE BEHIND IT</div>
-          <h1 className="hd fu" style={{fontSize:'clamp(56px,9vw,120px)',fontWeight:900,lineHeight:.88,letterSpacing:'-.02em',marginBottom:28,animationDelay:'.1s',opacity:0}}>
+          <h1 className="hd fu" style={{fontSize:'clamp(56px,9vw,120px)',fontWeight:700,lineHeight:.88,letterSpacing:'.06em',marginBottom:28,animationDelay:'.1s',opacity:0}}>
             BUILT BY<br/><span style={{color:A}}>ENGINEERS.</span>
           </h1>
           <p className="fu" style={{fontSize:18,color:'rgba(255,255,255,0.55)',maxWidth:520,lineHeight:1.8,fontWeight:300,animationDelay:'.2s',opacity:0}}>
@@ -191,7 +191,7 @@ export default function TeamPage() {
 
                 {/* info */}
                 <div style={{flex:1,minWidth:0}}>
-                  <div className="hd" style={{fontSize:20,fontWeight:800,letterSpacing:'.04em',color:W,marginBottom:2}}>{m.name}</div>
+                  <div className="hd" style={{fontSize:20,fontWeight:600,letterSpacing:'.08em',color:W,marginBottom:2}}>{m.name}</div>
                   <div className="lbl" style={{fontSize:10,color:A,marginBottom:4}}>{m.role}</div>
                   <div style={{fontSize:12,color:DIM,fontWeight:300,marginBottom:14}}>{m.spec}</div>
 
@@ -229,7 +229,7 @@ export default function TeamPage() {
       <div style={{borderTop:`1px solid ${BR}`,padding:'24px 28px',background:B,display:'flex',justifyContent:'space-between',alignItems:'center',flexWrap:'wrap',gap:16}}>
         <a href="/" style={{display:'flex',alignItems:'center',gap:10,textDecoration:'none'}}>
           <img src="/images/garudakshak.png" alt="" style={{width:22,height:22,objectFit:'contain'}} onError={e=>e.target.style.display='none'}/>
-          <span className="hd" style={{fontWeight:800,fontSize:14,letterSpacing:'.08em',color:W}}>GARUDAKSHAK</span>
+          <span className="hd" style={{fontWeight:600,fontSize:14,letterSpacing:'.14em',color:W}}>GARUDAKSHAK</span>
         </a>
         <a href="/demo" className="ba" style={{fontSize:12,padding:'10px 24px'}}>REQUEST DEMO →</a>
         <span className="lbl" style={{color:DIM,fontSize:9}}>© {new Date().getFullYear()} GARUDAKSHAK DEFENCE TECHNOLOGIES</span>

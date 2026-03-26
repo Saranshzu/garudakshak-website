@@ -55,15 +55,15 @@ export default function DemoPage() {
         html{scroll-behavior:smooth;}
         body{background:${B};color:${W};font-family:'Barlow',sans-serif;overflow-x:hidden;}
         .hd{font-family:'Barlow Condensed',sans-serif;}
-        .lbl{font-family:'Rajdhani',sans-serif;font-weight:600;letter-spacing:.2em;font-size:11px;}
+        .lbl{font-family:'Rajdhani',sans-serif;font-weight:500;letter-spacing:.28em;font-size:11px;}
         ::-webkit-scrollbar{width:3px;}
         ::-webkit-scrollbar-thumb{background:${A};}
-        .nl{color:${DIM};text-decoration:none;font-family:'Rajdhani',sans-serif;font-weight:600;font-size:12px;letter-spacing:.2em;transition:color .2s;padding-bottom:2px;border-bottom:1px solid transparent;}
+        .nl{color:${DIM};text-decoration:none;font-family:'Rajdhani',sans-serif;font-weight:500;font-size:12px;letter-spacing:.28em;transition:color .2s;padding-bottom:2px;border-bottom:1px solid transparent;}
         .nl:hover{color:${A};border-bottom-color:${A};}
-        .ba{background:${A};color:#000;padding:13px 32px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;letter-spacing:.18em;border:none;cursor:pointer;text-decoration:none;display:inline-block;transition:all .2s;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,0 100%);}
+        .ba{background:${A};color:#001a33;padding:13px 32px;font-family:'Rajdhani',sans-serif;font-weight:600;font-size:13px;letter-spacing:.26em;border:none;cursor:pointer;text-decoration:none;display:inline-block;transition:all .2s;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,0 100%);}
         .ba:hover{background:#FFAA33;transform:translateY(-1px);}
         .ba:disabled{background:#333;color:#666;cursor:not-allowed;transform:none;clip-path:none;}
-        .bo{border:1px solid ${BRA};color:${W};padding:13px 32px;font-family:'Rajdhani',sans-serif;font-weight:600;font-size:13px;letter-spacing:.18em;background:transparent;cursor:pointer;text-decoration:none;display:inline-block;transition:all .2s;}
+        .bo{border:1px solid ${BRA};color:${W};padding:13px 32px;font-family:'Rajdhani',sans-serif;font-weight:500;font-size:13px;letter-spacing:.26em;background:transparent;cursor:pointer;text-decoration:none;display:inline-block;transition:all .2s;}
         .bo:hover{border-color:${A};color:${A};}
         .gorb{position:absolute;border-radius:50%;filter:blur(120px);pointer-events:none;}
         .grid{background-image:linear-gradient(rgba(255,136,0,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,136,0,.03) 1px,transparent 1px);background-size:60px 60px;}
@@ -105,7 +105,7 @@ export default function DemoPage() {
               <span className="lbl" style={{color:A,fontSize:9}}>LIVE DEMO AVAILABLE</span>
             </div>
 
-            <h1 className="hd" style={{fontSize:'clamp(40px,4.5vw,60px)',fontWeight:900,lineHeight:.9,letterSpacing:'-.01em',marginBottom:20}}>
+            <h1 className="hd" style={{fontSize:'clamp(40px,4.5vw,60px)',fontWeight:700,lineHeight:.9,letterSpacing:'.05em',marginBottom:20}}>
               SEE GARUDA-<br/>SHIELD IN<br/><span style={{color:A}}>ACTION.</span>
             </h1>
 
@@ -161,7 +161,7 @@ export default function DemoPage() {
               <div style={{width:80,height:80,border:`2px solid ${A}`,borderRadius:'50%',display:'flex',alignItems:'center',justifyContent:'center',margin:'0 auto 28px',boxShadow:`0 0 32px rgba(255,136,0,0.2)`}}>
                 <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke={A} strokeWidth="2.5"><path d="M5 13l4 4L19 7"/></svg>
               </div>
-              <div className="hd fu" style={{fontSize:48,fontWeight:900,color:W,lineHeight:.9,marginBottom:16}}>REQUEST<br/><span style={{color:A}}>RECEIVED.</span></div>
+              <div className="hd fu" style={{fontSize:48,fontWeight:700,color:W,lineHeight:.9,letterSpacing:'.06em',marginBottom:16}}>REQUEST<br/><span style={{color:A}}>RECEIVED.</span></div>
               <p style={{fontSize:16,color:'rgba(255,255,255,0.5)',fontWeight:300,lineHeight:1.8,marginBottom:40}}>
                 Thank you, <strong style={{color:W}}>{form.name}</strong>. We've received your demo request and will reach out to <strong style={{color:W}}>{form.email}</strong> within 48 hours to schedule a session.
               </p>
@@ -174,7 +174,7 @@ export default function DemoPage() {
             /* ── FORM ── */
             <div style={{maxWidth:520,margin:'0 auto'}}>
               <div className="lbl fu fu1" style={{color:A,marginBottom:8}}>DEMO REQUEST FORM</div>
-              <h2 className="hd fu fu2" style={{fontSize:'clamp(32px,4vw,48px)',fontWeight:900,lineHeight:.92,marginBottom:8}}>
+              <h2 className="hd fu fu2" style={{fontSize:'clamp(32px,4vw,48px)',fontWeight:700,lineHeight:.92,letterSpacing:'.05em',marginBottom:8}}>
                 GET A LIVE<br/><span style={{color:A}}>DEMONSTRATION</span>
               </h2>
               <p className="fu fu3" style={{fontSize:14,color:DIM,fontWeight:300,lineHeight:1.7,marginBottom:40}}>
