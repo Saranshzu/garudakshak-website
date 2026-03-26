@@ -886,25 +886,30 @@ export default function Home() {
               </div>
             </div>
 
-            <div style={{display:'flex',flexDirection:'column',gap:3}}>
+            <div style={{display:'flex',flexDirection:'column',gap:16}}>
               {[
-                {l:'EMAIL',        v:'contact@garudakshak.com',              href:'mailto:contact@garudakshak.com'},
-                {l:'PHONE',        v:'+91 82097 06419',                       href:'tel:+918209706419'},
-                {l:'WEBSITE',      v:'garudakshak.com',                       href:'https://garudakshak.com'},
-                {l:'INCUBATED AT', v:'IIT Mandi Catalyst, Himachal Pradesh',  href:null},
+                {l:'EMAIL', v:'contact@garudakshak.com', href:'mailto:contact@garudakshak.com'},
+                {l:'PHONE', v:'+91 82097 06419',          href:'tel:+918209706419'},
               ].map(c=>(
-                <div key={c.l} style={{padding:'22px 26px',background:B3,borderBottom:`1px solid ${BR}`,position:'relative',overflow:'hidden'}}>
-                  <div style={{position:'absolute',top:0,left:0,width:3,height:'100%',background:A,opacity:.6}}/>
-                  <div className="lbl" style={{fontSize:9,color:DIM,marginBottom:8}}>{c.l}</div>
-                  {c.href
-                    ? <a href={c.href} className="hd"
-                        style={{fontSize:20,fontWeight:700,color:W,textDecoration:'none',letterSpacing:'.03em',transition:'color .2s'}}
-                        onMouseEnter={e=>e.target.style.color=A}
-                        onMouseLeave={e=>e.target.style.color=W}>{c.v}</a>
-                    : <div className="hd" style={{fontSize:20,fontWeight:700,letterSpacing:'.03em'}}>{c.v}</div>
-                  }
-                </div>
+                <a key={c.l} href={c.href} style={{
+                  display:'flex',alignItems:'center',gap:14,padding:'18px 22px',
+                  background:B3,border:`1px solid ${BR}`,textDecoration:'none',
+                  transition:'border-color .2s',position:'relative',overflow:'hidden',
+                }}
+                  onMouseEnter={e=>e.currentTarget.style.borderColor=BRA}
+                  onMouseLeave={e=>e.currentTarget.style.borderColor=BR}
+                >
+                  <div style={{width:3,height:'100%',position:'absolute',left:0,top:0,background:A,opacity:.7}}/>
+                  <div>
+                    <div className="lbl" style={{fontSize:9,color:DIM,marginBottom:4}}>{c.l}</div>
+                    <div className="hd" style={{fontSize:18,fontWeight:700,color:W,letterSpacing:'.03em'}}>{c.v}</div>
+                  </div>
+                </a>
               ))}
+              <div style={{padding:'14px 22px',background:B3,border:`1px solid ${BR}`}}>
+                <div className="lbl" style={{fontSize:9,color:DIM,marginBottom:4}}>INCUBATED AT</div>
+                <div className="hd" style={{fontSize:16,fontWeight:700,letterSpacing:'.03em'}}>IIT Mandi Catalyst, Himachal Pradesh</div>
+              </div>
             </div>
           </div>
         </div>

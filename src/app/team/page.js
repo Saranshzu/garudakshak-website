@@ -50,7 +50,7 @@ const team = [
     spec:"RF Simulation & Hardware Validation",
     image:"/images/Aishita.png",
     bio:"Specializes in RF simulation and hardware validation. Contributes to the S-band HPM prototype, RF front-end chain design, and X-band HPM system development — bridging EM simulation to physical hardware.",
-    tags:["RF Simulation","HPM","S-band","X-band","Hardware Validation"],
+    tags:["RF Simulation","HPM","Hardware Validation"],
   },
   {
     name:"Edison Kho",
@@ -88,7 +88,7 @@ const team = [
     name:"Gauri",
     role:"UI/UX Designer",
     spec:"Interface & Experience Design",
-    image:"/images/Gauri.jpeg",
+    image:"/images/Gauri.png",
     bio:"Designs the operator-facing interfaces for the Garuda-Shield platform — from real-time threat dashboards to mobile control apps — making complex defense systems intuitive to use.",
     tags:["UI/UX","Figma","Dashboard Design","User Research"],
   },
@@ -97,6 +97,7 @@ const team = [
 export default function TeamPage() {
   const [scrollY, setScrollY] = useState(0);
   const [hovered, setHovered] = useState(null);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const fn = () => setScrollY(window.scrollY);
@@ -122,6 +123,8 @@ export default function TeamPage() {
         .ba{background:${A};color:#000;padding:13px 32px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;letter-spacing:.2em;border:none;cursor:pointer;text-decoration:none;display:inline-block;transition:all .2s;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,0 100%);}
         .ba:hover{background:#FFAA33;transform:translateY(-1px);}
         .gorb{position:absolute;border-radius:50%;filter:blur(100px);pointer-events:none;}
+        .desk{display:flex!important;} .mob-tog{display:none!important;}
+        @media(max-width:768px){.desk{display:none!important;}.mob-tog{display:block!important;}}
         .grid{background-image:linear-gradient(rgba(255,136,0,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,136,0,.03) 1px,transparent 1px);background-size:60px 60px;}
         @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
         .fu{animation:fadeUp .7s ease forwards;}
@@ -150,6 +153,13 @@ export default function TeamPage() {
             <a href="/demo" className="ba" style={{padding:'10px 22px',fontSize:12}}>GET DEMO</a>
           </div>
         </div>
+        {menuOpen && (
+          <div style={{background:B2,borderTop:`1px solid ${BR}`,padding:'20px 24px',display:'flex',flexDirection:'column',gap:20}}>
+            {[['/','/HOME'],['/careers','CAREERS'],['/#contact','CONTACT'],['/demo','GET DEMO']].map(([h,l])=>(
+              <a key={l} href={h} className="nl" style={{fontSize:14}} onClick={()=>setMenuOpen(false)}>{l}</a>
+            ))}
+          </div>
+        )}
       </nav>
 
       {/* ── HEADER ── */}

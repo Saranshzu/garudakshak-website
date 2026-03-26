@@ -116,8 +116,8 @@ const domains = [
         title: "UI/UX Designer",
         type: "Full-time / Contract",
         level: "Mid",
-        desc: "Design intuitive operator interfaces for high-stakes environments — from map views to alert workflows to mobile apps.",
-        skills: ["Figma", "Design Systems", "User Research", "Motion Design"],
+        desc: "Design intuitive operator interfaces for high-stakes environments — from real-time threat maps to alert workflows, dashboards, and mobile control apps.",
+        skills: ["Figma", "Design Systems", "User Research", "Prototyping", "Motion Design"],
       },
     ],
   },
@@ -164,6 +164,7 @@ export default function CareersPage() {
   const [submitted, setSubmitted]   = useState(false);
   const [error, setError]           = useState('');
   const [filter, setFilter]         = useState('all');
+  const [menuOpen, setMenuOpen]       = useState(false);
 
   useEffect(() => {
     const fn = () => setScrollY(window.scrollY);
@@ -232,6 +233,8 @@ export default function CareersPage() {
         .bo{border:1px solid ${BRA};color:${W};padding:12px 28px;font-family:'Rajdhani',sans-serif;font-weight:600;font-size:13px;letter-spacing:.18em;background:transparent;cursor:pointer;text-decoration:none;display:inline-block;transition:all .2s;}
         .bo:hover{border-color:${A};color:${A};}
         .gorb{position:absolute;border-radius:50%;filter:blur(100px);pointer-events:none;}
+        .desk{display:flex!important;} .mob-tog{display:none!important;}
+        @media(max-width:768px){.desk{display:none!important;}.mob-tog{display:block!important;}}
         .grid{background-image:linear-gradient(rgba(255,136,0,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,136,0,.03) 1px,transparent 1px);background-size:60px 60px;}
         /* form inputs */
         .inp{width:100%;background:rgba(255,255,255,0.04);border:1px solid ${BR};color:${W};padding:12px 16px;font-family:'Barlow',sans-serif;font-size:14px;font-weight:300;outline:none;transition:border-color .2s;resize:vertical;}
@@ -279,6 +282,13 @@ export default function CareersPage() {
             <a href="/demo" className="ba" style={{padding:'10px 22px',fontSize:12}}>GET DEMO</a>
           </div>
         </div>
+        {menuOpen && (
+          <div style={{background:B2,borderTop:`1px solid ${BR}`,padding:'20px 24px',display:'flex',flexDirection:'column',gap:20}}>
+            {[['/','/HOME'],['/team','TEAM'],['/#contact','CONTACT'],['/demo','GET DEMO']].map(([h,l])=>(
+              <a key={l} href={h} className="nl" style={{fontSize:14}} onClick={()=>setMenuOpen(false)}>{l}</a>
+            ))}
+          </div>
+        )}
       </nav>
 
       {/* ── HERO ── */}
