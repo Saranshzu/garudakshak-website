@@ -261,19 +261,31 @@ export default function Home() {
       <section style={{position:'relative',width:'100%',height:'100vh',overflow:'hidden',background:'#000'}}>
 
         {/* video */}
-        <video
-          autoPlay muted playsInline
+        {/* YouTube autoplay background — muted, no controls, pauses via JS after 2s */}
+        <iframe
           ref={videoRef}
-          onCanPlay={()=>{
-            setVideoLoaded(true);
-            // freeze on the good opening frame after 2s
-            setTimeout(()=>{ if(videoRef.current) videoRef.current.pause(); }, 2000);
+          src="https://www.youtube.com/embed/XzzK-CUPy50?autoplay=1&mute=1&controls=0&loop=0&playsinline=1&rel=0&modestbranding=1&enablejsapi=1"
+          allow="autoplay; fullscreen"
+          style={{
+            position:'absolute',inset:0,width:'100%',height:'100%',
+            border:'none',zIndex:1,
+            opacity:videoLoaded?1:0,transition:'opacity 1s',
+            /* scale up slightly to hide black bars */
+            transform:'scale(1.08)',
           }}
-          style={{position:'absolute',inset:0,width:'100%',height:'100%',objectFit:'cover',zIndex:1,opacity:videoLoaded?1:0,transition:'opacity 1s'}}
-        >
-          <source src="/videos/intro.mp4"  type="video/mp4"/>
-          <source src="/videos/intro.webm" type="video/webm"/>
-        </video>
+          onLoad={()=>{
+            setVideoLoaded(true);
+            // pause via postMessage after 2s
+            setTimeout(()=>{
+              if(videoRef.current){
+                videoRef.current.contentWindow.postMessage(
+                  JSON.stringify({event:'command',func:'pauseVideo',args:[]}),
+                  '*'
+                );
+              }
+            }, 2200);
+          }}
+        />
 
         {/* dark gradient layers */}
         <div style={{position:'absolute',inset:0,zIndex:2,background:'linear-gradient(to bottom,rgba(5,5,8,0.5) 0%,rgba(5,5,8,0.2) 40%,rgba(5,5,8,0.7) 80%,rgba(5,5,8,1) 100%)'}}/>
@@ -435,29 +447,12 @@ export default function Home() {
           {/* ── VIDEO PLAYER ── */}
           <div style={{marginTop:56,maxWidth:'72%',margin:'56px auto 0',position:'relative',border:`1px solid ${BR}`,overflow:'hidden',background:'#000'}}>
             <div style={{position:'relative',paddingTop:'52%'}}>
-              <video
-                controls
-                playsInline
-                style={{position:'absolute',inset:0,width:'100%',height:'100%',objectFit:'cover',display:'block'}}
-              >
-                <source src="/videos/intro.mp4"  type="video/mp4"/>
-                <source src="/videos/intro.webm" type="video/webm"/>
-              </video>
-              {/* fallback shown if video file not yet added */}
-              <div style={{
-                position:'absolute',inset:0,
-                display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',
-                background:'linear-gradient(135deg,#0A0C12 0%,#0F1520 100%)',
-                gap:20,zIndex:-1,
-              }}>
-                <div style={{width:72,height:72,border:`2px solid rgba(255,136,0,0.3)`,borderRadius:'50%',display:'flex',alignItems:'center',justifyContent:'center'}}>
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><polygon points="5,3 19,12 5,21" fill={A}/></svg>
-                </div>
-                <div style={{textAlign:'center'}}>
-                  <div className="hd" style={{fontSize:18,fontWeight:700,color:'rgba(255,255,255,0.6)',letterSpacing:'.06em',marginBottom:8}}>SYSTEM DEMONSTRATION VIDEO</div>
-                  <div className="lbl" style={{fontSize:10,color:DIM}}>ADD FILE → /public/videos/intro.mp4</div>
-                </div>
-              </div>
+              <iframe
+                src="https://www.youtube.com/embed/XzzK-CUPy50?controls=1&rel=0&modestbranding=1"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                style={{position:'absolute',inset:0,width:'100%',height:'100%',border:'none',display:'block'}}
+              />
             </div>
             {/* bottom label */}
             <div style={{
