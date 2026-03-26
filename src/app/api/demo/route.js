@@ -1,14 +1,7 @@
 import { NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
+import { hasDatabaseConfig, saveDemoRequest } from '../../../lib/db';
 
-const DATA_FILE = path.join(process.cwd(), 'data', 'demo-requests.json');
-
-function ensureDataFile() {
-  const dir = path.join(process.cwd(), 'data');
-  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-  if (!fs.existsSync(DATA_FILE)) fs.writeFileSync(DATA_FILE, JSON.stringify([], null, 2));
-}
+const WEB3FORMS_KEY = process.env.WEB3FORMS_KEY;
 
 export async function POST(request) {
   try {
@@ -19,41 +12,55 @@ export async function POST(request) {
       return NextResponse.json({ error: 'Name, organisation, and email are required.' }, { status: 400 });
     }
 
-    ensureDataFile();
-    const existing = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
+    if (!hasDatabaseConfig()) {
+      return NextResponse.json(
+        { error: 'Database not configured. Add a Postgres integration in Vercel and set POSTGRES_URL or DATABASE_URL.' },
+        { status: 500 }
+      );
+    }
 
-    const entry = {
-      id: Date.now().toString(),
-      submittedAt: new Date().toISOString(),
-      name: name.trim(),
-      email: email.trim().toLowerCase(),
-      phone: phone?.trim() || '',
-      designation: designation?.trim() || '',
-      org: org.trim(),
-      orgType: orgType?.trim() || '',
-      useCase: useCase?.trim() || '',
-      location: location?.trim() || '',
-      timeline: timeline?.trim() || '',
-      message: message?.trim() || '',
-      status: 'new',
-    };
+    await saveDemoRequest({
+      name,
+      org,
+      email,
+      phone,
+      designation,
+      useCase,
+      location,
+      timeline,
+      message,
+      orgType,
+    });
 
-    existing.push(entry);
-    fs.writeFileSync(DATA_FILE, JSON.stringify(existing, null, 2));
+    let emailSent = false;
 
-    return NextResponse.json({ success: true, id: entry.id }, { status: 200 });
+    if (WEB3FORMS_KEY) {
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            access_key: WEB3FORMS_KEY,
+            subject: `[Demo Request] ${org} - ${name}`,
+            from_name: name,
+            email,
+            message: `Organisation: ${org}\nOrg Type: ${orgType || '-'}\nDesignation: ${designation || '-'}\nPhone: ${phone || '-'}\nLocation: ${location || '-'}\nUse Case: ${useCase || '-'}\nTimeline: ${timeline || '-'}\n\n${message || '-'}`,
+            botcheck: '',
+          }),
+        });
+
+        if (res.ok) {
+          const data = await res.json();
+          emailSent = Boolean(data.success);
+        }
+      } catch (emailError) {
+        console.error('Demo email forwarding failed:', emailError);
+      }
+    }
+
+    return NextResponse.json({ success: true, stored: true, emailSent }, { status: 200 });
   } catch (err) {
-    console.error('Demo API error:', err);
-    return NextResponse.json({ error: 'Server error. Please try again.' }, { status: 500 });
-  }
-}
-
-export async function GET() {
-  try {
-    ensureDataFile();
-    const data = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
-    return NextResponse.json({ requests: data, total: data.length }, { status: 200 });
-  } catch {
-    return NextResponse.json({ error: 'Could not read demo requests.' }, { status: 500 });
+    console.error('Demo error:', err);
+    return NextResponse.json({ error: 'Server error. Please try again or email us at contact@garudakshak.com' }, { status: 500 });
   }
 }

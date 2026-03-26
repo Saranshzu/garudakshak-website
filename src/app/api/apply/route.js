@@ -1,60 +1,64 @@
 import { NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
+import { hasDatabaseConfig, saveJobApplication } from '../../../lib/db';
 
-const DATA_FILE = path.join(process.cwd(), 'data', 'applications.json');
-
-// Ensure data directory and file exist
-function ensureDataFile() {
-  const dir = path.join(process.cwd(), 'data');
-  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-  if (!fs.existsSync(DATA_FILE)) fs.writeFileSync(DATA_FILE, JSON.stringify([], null, 2));
-}
+const WEB3FORMS_KEY = process.env.WEB3FORMS_KEY;
 
 export async function POST(request) {
   try {
     const body = await request.json();
     const { name, email, phone, role, domain, experience, message, portfolio } = body;
 
-    // Basic validation
     if (!name || !email || !role) {
       return NextResponse.json({ error: 'Name, email, and role are required.' }, { status: 400 });
     }
 
-    ensureDataFile();
+    if (!hasDatabaseConfig()) {
+      return NextResponse.json(
+        { error: 'Database not configured. Add a Postgres integration in Vercel and set POSTGRES_URL or DATABASE_URL.' },
+        { status: 500 }
+      );
+    }
 
-    const existing = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
+    await saveJobApplication({
+      name,
+      email,
+      phone,
+      role,
+      domain,
+      experience,
+      message,
+      portfolio,
+    });
 
-    const application = {
-      id: Date.now().toString(),
-      submittedAt: new Date().toISOString(),
-      name: name.trim(),
-      email: email.trim().toLowerCase(),
-      phone: phone?.trim() || '',
-      role: role.trim(),
-      domain: domain?.trim() || '',
-      experience: experience?.trim() || '',
-      message: message?.trim() || '',
-      portfolio: portfolio?.trim() || '',
-      status: 'new',
-    };
+    let emailSent = false;
 
-    existing.push(application);
-    fs.writeFileSync(DATA_FILE, JSON.stringify(existing, null, 2));
+    if (WEB3FORMS_KEY) {
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            access_key: WEB3FORMS_KEY,
+            subject: `[Job Application] ${role} - ${name}`,
+            from_name: name,
+            email,
+            message: `Role: ${role}\nDomain: ${domain || '-'}\nPhone: ${phone || '-'}\nExperience: ${experience || '-'}\nPortfolio: ${portfolio || '-'}\n\n${message || '-'}`,
+            botcheck: '',
+          }),
+        });
 
-    return NextResponse.json({ success: true, id: application.id }, { status: 200 });
+        if (res.ok) {
+          const data = await res.json();
+          emailSent = Boolean(data.success);
+        }
+      } catch (emailError) {
+        console.error('Application email forwarding failed:', emailError);
+      }
+    }
+
+    return NextResponse.json({ success: true, stored: true, emailSent }, { status: 200 });
   } catch (err) {
-    console.error('Apply API error:', err);
-    return NextResponse.json({ error: 'Server error. Please try again.' }, { status: 500 });
-  }
-}
-
-export async function GET() {
-  try {
-    ensureDataFile();
-    const data = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
-    return NextResponse.json({ applications: data, total: data.length }, { status: 200 });
-  } catch (err) {
-    return NextResponse.json({ error: 'Could not read applications.' }, { status: 500 });
+    console.error('Apply error:', err);
+    return NextResponse.json({ error: 'Server error. Please try again or email us at contact@garudakshak.com' }, { status: 500 });
   }
 }

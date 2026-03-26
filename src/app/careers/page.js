@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
+import SiteNav from '../../components/SiteNav';
 
 const A   = "#FF8800";
 const B   = "#050508";
@@ -157,20 +158,12 @@ const typeBadge = (type) => ({
 });
 
 export default function CareersPage() {
-  const [scrollY, setScrollY]       = useState(0);
   const [activeModal, setActiveModal] = useState(null); // role object
   const [form, setForm]             = useState({ name:'', email:'', phone:'', experience:'', message:'', portfolio:'' });
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted]   = useState(false);
   const [error, setError]           = useState('');
   const [filter, setFilter]         = useState('all');
-  const [menuOpen, setMenuOpen]       = useState(false);
-
-  useEffect(() => {
-    const fn = () => setScrollY(window.scrollY);
-    window.addEventListener('scroll', fn, { passive: true });
-    return () => window.removeEventListener('scroll', fn);
-  }, []);
 
   // Lock body scroll when modal open
   useEffect(() => {
@@ -259,37 +252,7 @@ export default function CareersPage() {
         .fu3{animation-delay:.25s;opacity:0;}
       `}</style>
 
-      {/* ── NAV ── */}
-      <nav style={{
-        position:'fixed',top:0,left:0,right:0,zIndex:200,
-        background: scrollY>20 ? 'rgba(5,5,8,0.96)' : 'transparent',
-        backdropFilter: scrollY>20 ? 'blur(20px)' : 'none',
-        borderBottom:`1px solid ${scrollY>20?BR:'transparent'}`,
-        transition:'all .35s',
-      }}>
-        <div style={{maxWidth:1300,margin:'0 auto',padding:'0 28px',height:64,display:'flex',alignItems:'center',justifyContent:'space-between'}}>
-          <a href="/" style={{display:'flex',alignItems:'center',gap:12,textDecoration:'none'}}>
-            <img src="/images/garudakshak.png" alt="" style={{width:32,height:32,objectFit:'contain'}} onError={e=>e.target.style.display='none'}/>
-            <div>
-              <div className="hd" style={{fontWeight:900,fontSize:17,letterSpacing:'.1em',color:W}}>GARUDAKSHAK</div>
-              <div className="lbl" style={{fontSize:8,color:A,marginTop:1}}>SECURING SKIES, DEFENDING HORIZONS</div>
-            </div>
-          </a>
-          <div style={{display:'flex',gap:36,alignItems:'center'}}>
-            <a href="/" className="nl">HOME</a>
-            <a href="/team" className="nl">TEAM</a>
-            <a href="/#contact" className="nl">CONTACT</a>
-            <a href="/demo" className="ba" style={{padding:'10px 22px',fontSize:12}}>GET DEMO</a>
-          </div>
-        </div>
-        {menuOpen && (
-          <div style={{background:B2,borderTop:`1px solid ${BR}`,padding:'20px 24px',display:'flex',flexDirection:'column',gap:20}}>
-            {[['/','/HOME'],['/team','TEAM'],['/#contact','CONTACT'],['/demo','GET DEMO']].map(([h,l])=>(
-              <a key={l} href={h} className="nl" style={{fontSize:14}} onClick={()=>setMenuOpen(false)}>{l}</a>
-            ))}
-          </div>
-        )}
-      </nav>
+      <SiteNav />
 
       {/* ── HERO ── */}
       <section className="grid" style={{paddingTop:150,paddingBottom:80,paddingLeft:28,paddingRight:28,position:'relative',overflow:'hidden',background:B}}>

@@ -1,15 +1,13 @@
 "use client";
 
 import { useState, useEffect, useRef } from 'react';
+import SiteNav from '../components/SiteNav';
 
 export default function Home() {
   const [scrollY, setScrollY]           = useState(0);
-  const [menuOpen, setMenuOpen]         = useState(false);
   const [selectedProto, setSelectedProto] = useState(0);
-  const [videoLoaded, setVideoLoaded]   = useState(false);
   const [activeProto, setActiveProto]   = useState(0);
   const protoSectionRef = useRef(null);
-  const videoRef = useRef(null);
 
   /* ── DATA ─────────────────────────────────────────── */
   /* Supporter logos
@@ -214,78 +212,17 @@ export default function Home() {
         @media(min-width:769px) { .mob-tog { display:none!important; } }
       `}</style>
 
-      {/* ════════════════════════════════════════
-          NAV
-      ════════════════════════════════════════ */}
-      <nav style={{
-        position:'fixed',top:0,left:0,right:0,zIndex:200,
-        background: scrollY>60 ? 'rgba(5,5,8,0.96)' : 'transparent',
-        backdropFilter: scrollY>60 ? 'blur(20px)' : 'none',
-        borderBottom: `1px solid ${scrollY>60 ? BR : 'transparent'}`,
-        transition:'all .35s',
-      }}>
-        <div style={{maxWidth:1300,margin:'0 auto',padding:'0 28px',height:64,display:'flex',alignItems:'center',justifyContent:'space-between'}}>
-          <a href="#" style={{display:'flex',alignItems:'center',gap:12,textDecoration:'none'}}>
-            <img src="/images/garudakshak.png" alt="" style={{width:34,height:34,objectFit:'contain'}} onError={e=>e.target.style.display='none'}/>
-            <div>
-              <div className="hd" style={{fontWeight:900,fontSize:18,letterSpacing:'.1em',color:W}}>GARUDAKSHAK</div>
-              <div className="lbl" style={{fontSize:8,color:A,marginTop:1}}>SECURING SKIES, DEFENDING HORIZONS</div>
-            </div>
-          </a>
-
-          <div className="desk" style={{display:'flex',gap:40}}>
-            {[['#about','ABOUT'],['#prototype','PROTOTYPE'],['#recognition','RECOGNITION'],['/team','TEAM'],['/careers','CAREERS'],['#contact','CONTACT']].map(([h,l])=>(
-              <a key={l} href={h} className="nl">{l}</a>
-            ))}
-          </div>
-
-          <a href="/demo" className="ba desk" style={{padding:'10px 24px',fontSize:12}}>GET DEMO</a>
-
-          <button className="mob-tog" style={{display:'none',background:'none',border:`1px solid ${BR}`,padding:'7px 11px',color:W,cursor:'pointer'}} onClick={()=>setMenuOpen(!menuOpen)}>
-            <svg width="18" height="12" viewBox="0 0 18 12" fill="none"><path d="M0 1H18M0 6H18M0 11H18" stroke="currentColor" strokeWidth="1.5"/></svg>
-          </button>
-        </div>
-
-        {menuOpen && (
-          <div style={{background:B2,borderTop:`1px solid ${BR}`,padding:'24px 28px',display:'flex',flexDirection:'column',gap:22}}>
-            {[['#about','ABOUT'],['#prototype','PROTOTYPE'],['#recognition','RECOGNITION'],['/team','TEAM'],['/careers','CAREERS'],['#contact','CONTACT']].map(([h,l])=>(
-              <a key={l} href={h} className="nl" style={{fontSize:15}} onClick={()=>setMenuOpen(false)}>{l}</a>
-            ))}
-          </div>
-        )}
-      </nav>
+      <SiteNav isHome scrollThreshold={60} />
 
       {/* ════════════════════════════════════════
           HERO — FULL SCREEN VIDEO
       ════════════════════════════════════════ */}
       <section style={{position:'relative',width:'100%',height:'100vh',overflow:'hidden',background:'#000'}}>
 
-        {/* video */}
-        {/* YouTube autoplay background — muted, no controls, pauses via JS after 2s */}
-        <iframe
-          ref={videoRef}
-          src="https://www.youtube.com/embed/XzzK-CUPy50?autoplay=1&mute=1&controls=0&loop=0&playsinline=1&rel=0&modestbranding=1&enablejsapi=1"
-          allow="autoplay; fullscreen"
-          style={{
-            position:'absolute',inset:0,width:'100%',height:'100%',
-            border:'none',zIndex:1,
-            opacity:videoLoaded?1:0,transition:'opacity 1s',
-            /* scale up slightly to hide black bars */
-            transform:'scale(1.08)',
-          }}
-          onLoad={()=>{
-            setVideoLoaded(true);
-            // pause via postMessage after 2s
-            setTimeout(()=>{
-              if(videoRef.current){
-                videoRef.current.contentWindow.postMessage(
-                  JSON.stringify({event:'command',func:'pauseVideo',args:[]}),
-                  '*'
-                );
-              }
-            }, 500);
-          }}
-        />
+        <div style={{
+          position:'absolute',inset:0,zIndex:1,
+          background:'radial-gradient(circle at 78% 22%, rgba(255,136,0,0.24), transparent 22%), linear-gradient(135deg, #050508 0%, #0A0C12 45%, #111927 100%)',
+        }}/>
 
         {/* dark gradient layers */}
         <div style={{position:'absolute',inset:0,zIndex:2,background:'linear-gradient(to bottom,rgba(5,5,8,0.5) 0%,rgba(5,5,8,0.2) 40%,rgba(5,5,8,0.7) 80%,rgba(5,5,8,1) 100%)'}}/>
@@ -871,8 +808,7 @@ export default function Home() {
         <div className="gorb" style={{width:700,height:700,background:'rgba(255,136,0,0.08)',bottom:-200,right:-200}}/>
         <div className="grid" style={{position:'absolute',inset:0,opacity:.4}}/>
         <div style={{maxWidth:1300,margin:'0 auto',position:'relative',zIndex:1}}>
-          <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(320px,1fr))',gap:80,alignItems:'start'}}>
-            <div>
+          <div style={{maxWidth:760}}>
               <div className="stag">GET IN TOUCH</div>
               <h2 className="hd" style={{fontSize:'clamp(44px,7vw,84px)',fontWeight:900,lineHeight:.88,marginBottom:28}}>
                 LET'S SECURE<br/><span style={{color:A,textShadow:`0 0 60px rgba(255,136,0,0.4)`}}>YOUR SKIES.</span>
@@ -884,33 +820,6 @@ export default function Home() {
                 <a href="mailto:contact@garudakshak.com" className="ba">EMAIL US</a>
                 <a href="tel:+918209706419" className="bo">+91 82097 06419</a>
               </div>
-            </div>
-
-            <div style={{display:'flex',flexDirection:'column',gap:16}}>
-              {[
-                {l:'EMAIL', v:'contact@garudakshak.com', href:'mailto:contact@garudakshak.com'},
-                {l:'PHONE', v:'+91 82097 06419',          href:'tel:+918209706419'},
-              ].map(c=>(
-                <a key={c.l} href={c.href} style={{
-                  display:'flex',alignItems:'center',gap:14,padding:'18px 22px',
-                  background:B3,border:`1px solid ${BR}`,textDecoration:'none',
-                  transition:'border-color .2s',position:'relative',overflow:'hidden',
-                }}
-                  onMouseEnter={e=>e.currentTarget.style.borderColor=BRA}
-                  onMouseLeave={e=>e.currentTarget.style.borderColor=BR}
-                >
-                  <div style={{width:3,height:'100%',position:'absolute',left:0,top:0,background:A,opacity:.7}}/>
-                  <div>
-                    <div className="lbl" style={{fontSize:9,color:DIM,marginBottom:4}}>{c.l}</div>
-                    <div className="hd" style={{fontSize:18,fontWeight:700,color:W,letterSpacing:'.03em'}}>{c.v}</div>
-                  </div>
-                </a>
-              ))}
-              <div style={{padding:'14px 22px',background:B3,border:`1px solid ${BR}`}}>
-                <div className="lbl" style={{fontSize:9,color:DIM,marginBottom:4}}>INCUBATED AT</div>
-                <div className="hd" style={{fontSize:16,fontWeight:700,letterSpacing:'.03em'}}>IIT Mandi Catalyst, Himachal Pradesh</div>
-              </div>
-            </div>
           </div>
         </div>
       </section>

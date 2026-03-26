@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import SiteNav from '../../components/SiteNav';
 
 const A   = "#FF8800";
 const B   = "#050508";
@@ -12,7 +13,6 @@ const BR  = "rgba(255,255,255,0.08)";
 const BRA = "rgba(255,136,0,0.3)";
 
 export default function DemoPage() {
-  const [scrollY, setScrollY]     = useState(0);
   const [step, setStep]           = useState(1); // 1 = form, 2 = success
   const [submitting, setSubmitting] = useState(false);
   const [error, setError]         = useState('');
@@ -20,12 +20,6 @@ export default function DemoPage() {
     name: '', org: '', email: '', phone: '', designation: '',
     useCase: '', location: '', timeline: '', message: '', orgType: '',
   });
-
-  useEffect(() => {
-    const fn = () => setScrollY(window.scrollY);
-    window.addEventListener('scroll', fn, { passive: true });
-    return () => window.removeEventListener('scroll', fn);
-  }, []);
 
   const set = (k, v) => setForm(f => ({ ...f, [k]: v }));
 
@@ -89,30 +83,7 @@ export default function DemoPage() {
         @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
       `}</style>
 
-      {/* ── NAV ── */}
-      <nav style={{
-        position:'fixed',top:0,left:0,right:0,zIndex:100,
-        background:scrollY>20?'rgba(5,5,8,0.96)':'transparent',
-        backdropFilter:scrollY>20?'blur(20px)':'none',
-        borderBottom:`1px solid ${scrollY>20?BR:'transparent'}`,
-        transition:'all .35s',
-      }}>
-        <div style={{maxWidth:1300,margin:'0 auto',padding:'0 28px',height:64,display:'flex',alignItems:'center',justifyContent:'space-between'}}>
-          <a href="/" style={{display:'flex',alignItems:'center',gap:12,textDecoration:'none'}}>
-            <img src="/images/garudakshak.png" alt="" style={{width:32,height:32,objectFit:'contain'}} onError={e=>e.target.style.display='none'}/>
-            <div>
-              <div className="hd" style={{fontWeight:900,fontSize:17,letterSpacing:'.1em',color:W}}>GARUDAKSHAK</div>
-              <div className="lbl" style={{fontSize:8,color:A,marginTop:1}}>SECURING SKIES, DEFENDING HORIZONS</div>
-            </div>
-          </a>
-          <div style={{display:'flex',gap:36,alignItems:'center'}}>
-            <a href="/" className="nl">HOME</a>
-            <a href="/team" className="nl">TEAM</a>
-            <a href="/careers" className="nl">CAREERS</a>
-            <a href="/#contact" className="nl">CONTACT</a>
-          </div>
-        </div>
-      </nav>
+      <SiteNav />
 
       {/* ── PAGE ── */}
       <div style={{minHeight:'100vh',display:'grid',gridTemplateColumns:'1fr 1fr',background:B}} className="page-grid">

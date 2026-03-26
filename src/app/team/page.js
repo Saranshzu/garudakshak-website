@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import SiteNav from '../../components/SiteNav';
 
 const A    = "#FF8800";
 const B    = "#050508";
@@ -25,6 +26,7 @@ const team = [
     role:"Technical Mentor",
     spec:"RF & Microwave",
     image:"/images/Dr.Anirban.png",
+    imagePosition:"center 28%",
     bio:"Deep domain expert in RF and microwave engineering with over 10 years of research and industry experience. Core technical advisor.",
     tags:["RF Design","Microwave","Research"],
   },
@@ -73,6 +75,7 @@ const team = [
     role:"AI/ML Engineer",
     spec:"Machine Learning & Software",
     image:"/images/Satvik.png",
+    imagePosition:"center 24%",
     bio:"Develops and deploys machine learning models for drone detection and classification. Bridges AI research with real-time software systems on the Garudakshak platform.",
     tags:["AI/ML","Deep Learning","Python","Detection Models"],
   },
@@ -88,22 +91,14 @@ const team = [
     name:"Gauri",
     role:"UI/UX Designer",
     spec:"Interface & Experience Design",
-    image:"/images/Gauri.png",
+    image:"/images/gauri.jpeg",
     bio:"Designs the operator-facing interfaces for the Garuda-Shield platform — from real-time threat dashboards to mobile control apps — making complex defense systems intuitive to use.",
     tags:["UI/UX","Figma","Dashboard Design","User Research"],
   },
 ];
 
 export default function TeamPage() {
-  const [scrollY, setScrollY] = useState(0);
   const [hovered, setHovered] = useState(null);
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const fn = () => setScrollY(window.scrollY);
-    window.addEventListener('scroll', fn, { passive:true });
-    return () => window.removeEventListener('scroll', fn);
-  }, []);
 
   return (
     <>
@@ -130,37 +125,7 @@ export default function TeamPage() {
         .fu{animation:fadeUp .7s ease forwards;}
       `}</style>
 
-      {/* ── NAV ── */}
-      <nav style={{
-        position:'fixed',top:0,left:0,right:0,zIndex:100,
-        background: scrollY>20 ? 'rgba(5,5,8,0.96)' : 'transparent',
-        backdropFilter: scrollY>20 ? 'blur(20px)' : 'none',
-        borderBottom:`1px solid ${scrollY>20?BR:'transparent'}`,
-        transition:'all .35s',
-      }}>
-        <div style={{maxWidth:1300,margin:'0 auto',padding:'0 28px',height:64,display:'flex',alignItems:'center',justifyContent:'space-between'}}>
-          <a href="/" style={{display:'flex',alignItems:'center',gap:12,textDecoration:'none'}}>
-            <img src="/images/garudakshak.png" alt="" style={{width:32,height:32,objectFit:'contain'}} onError={e=>e.target.style.display='none'}/>
-            <div>
-              <div className="hd" style={{fontWeight:900,fontSize:17,letterSpacing:'.1em',color:W}}>GARUDAKSHAK</div>
-              <div className="lbl" style={{fontSize:8,color:A,marginTop:1}}>SECURING SKIES, DEFENDING HORIZONS</div>
-            </div>
-          </a>
-          <div style={{display:'flex',gap:36,alignItems:'center'}}>
-            <a href="/" className="nl">HOME</a>
-            <a href="/#recognition" className="nl">RECOGNITION</a>
-            <a href="/#contact" className="nl">CONTACT</a>
-            <a href="/demo" className="ba" style={{padding:'10px 22px',fontSize:12}}>GET DEMO</a>
-          </div>
-        </div>
-        {menuOpen && (
-          <div style={{background:B2,borderTop:`1px solid ${BR}`,padding:'20px 24px',display:'flex',flexDirection:'column',gap:20}}>
-            {[['/','/HOME'],['/careers','CAREERS'],['/#contact','CONTACT'],['/demo','GET DEMO']].map(([h,l])=>(
-              <a key={l} href={h} className="nl" style={{fontSize:14}} onClick={()=>setMenuOpen(false)}>{l}</a>
-            ))}
-          </div>
-        )}
-      </nav>
+      <SiteNav />
 
       {/* ── HEADER ── */}
       <section className="grid" style={{paddingTop:160,paddingBottom:80,paddingLeft:28,paddingRight:28,position:'relative',overflow:'hidden',background:B}}>
@@ -171,7 +136,7 @@ export default function TeamPage() {
             BUILT BY<br/><span style={{color:A}}>ENGINEERS.</span>
           </h1>
           <p className="fu" style={{fontSize:18,color:'rgba(255,255,255,0.55)',maxWidth:520,lineHeight:1.8,fontWeight:300,animationDelay:'.2s',opacity:0}}>
-            A multidisciplinary team of 9 — RF engineers, AI researchers, mechanical designers, and software developers — all working toward one goal: securing India's airspace.
+            A multidisciplinary team of 10 — RF engineers, AI researchers, mechanical designers, and software developers — all working toward one goal: securing India's airspace.
           </p>
         </div>
       </section>
@@ -212,6 +177,7 @@ export default function TeamPage() {
                     style={{
                       width:88,height:88,
                       objectFit:'cover',
+                      objectPosition:m.imagePosition || 'center',
                       borderRadius:2,
                       border:`1px solid ${hovered===i?BRA:BR}`,
                       transition:'border-color .3s',
