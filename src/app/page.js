@@ -9,6 +9,7 @@ export default function Home() {
   const [videoLoaded, setVideoLoaded]   = useState(false);
   const [activeProto, setActiveProto]   = useState(0);
   const protoSectionRef = useRef(null);
+  const videoRef = useRef(null);
 
   /* ── DATA ─────────────────────────────────────────── */
   /* Supporter logos
@@ -261,8 +262,13 @@ export default function Home() {
 
         {/* video */}
         <video
-          autoPlay muted loop playsInline
-          onCanPlay={()=>setVideoLoaded(true)}
+          autoPlay muted playsInline
+          ref={videoRef}
+          onCanPlay={()=>{
+            setVideoLoaded(true);
+            // freeze on the good opening frame after 2s
+            setTimeout(()=>{ if(videoRef.current) videoRef.current.pause(); }, 2000);
+          }}
           style={{position:'absolute',inset:0,width:'100%',height:'100%',objectFit:'cover',zIndex:1,opacity:videoLoaded?1:0,transition:'opacity 1s'}}
         >
           <source src="/videos/intro.mp4"  type="video/mp4"/>
@@ -583,7 +589,7 @@ export default function Home() {
                   {/* Right antenna panel → label top-right */}
                   <path d="M 318,112 C 360,88 408,60 445,38" stroke="#FF8800" strokeWidth="1.1" fill="none" markerEnd="url(#arw)" strokeDasharray="5,2.5" opacity="0.9"/>
                   <rect x="448" y="26" width="122" height="18" rx="2" fill="rgba(4,4,8,0.85)"/>
-                  <text x="451" y="39" fill="#FF8800" fontSize="10" fontFamily="'Rajdhani',sans-serif" fontWeight="700" letterSpacing="0.12em">270° ARRANGEMENT</text>
+                  <text x="451" y="39" fill="#FF8800" fontSize="10" fontFamily="'Rajdhani',sans-serif" fontWeight="700" letterSpacing="0.12em">360° ARRANGEMENT</text>
 
                   {/* Cylindrical base → label right-mid */}
                   <path d="M 295,295 C 360,295 408,288 445,285" stroke="#FF8800" strokeWidth="1.1" fill="none" markerEnd="url(#arw)" strokeDasharray="5,2.5" opacity="0.9"/>
@@ -854,7 +860,7 @@ export default function Home() {
           <div>
             <div className="stag">THE TEAM</div>
             <h2 className="hd" style={{fontSize:'clamp(32px,4vw,52px)',fontWeight:900,lineHeight:.95,margin:0}}>
-              9 engineers.<br/><span style={{color:A}}>One mission.</span>
+              10 engineers.<br/><span style={{color:A}}>One mission.</span>
             </h2>
           </div>
           <div style={{display:'flex',flexDirection:'column',gap:12,alignItems:'flex-start',maxWidth:440}}>

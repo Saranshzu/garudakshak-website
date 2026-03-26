@@ -50,7 +50,7 @@ const team = [
     spec:"RF Simulation & Hardware Validation",
     image:"/images/Aishita.png",
     bio:"Specializes in RF simulation and hardware validation. Contributes to the S-band HPM prototype, RF front-end chain design, and X-band HPM system development — bridging EM simulation to physical hardware.",
-    tags:["RF Simulation","HPM","Hardware Validation"],
+    tags:["RF Simulation","HPM","S-band","X-band","Hardware Validation"],
   },
   {
     name:"Edison Kho",
@@ -83,6 +83,14 @@ const team = [
     image:"/images/aditya.jpeg",
     bio:"Develops backend services, data pipelines, and the API layer that connects hardware sensors to the control software.",
     tags:["Backend","APIs","Systems"],
+  },
+  {
+    name:"Gauri",
+    role:"UI/UX Designer",
+    spec:"Interface & Experience Design",
+    image:"/images/Gauri.jpeg",
+    bio:"Designs the operator-facing interfaces for the Garuda-Shield platform — from real-time threat dashboards to mobile control apps — making complex defense systems intuitive to use.",
+    tags:["UI/UX","Figma","Dashboard Design","User Research"],
   },
 ];
 
